@@ -6,11 +6,11 @@
 <head>
 
 <meta charset="UTF-8">
-
+ 
 <title>Post Moderation</title>
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/css/style.css">
+	href="style.css">
 
 </head>
 

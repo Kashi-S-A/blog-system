@@ -8,7 +8,7 @@
 <title>Create New Post</title>
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/css/style.css">
+	href="style.css">
 
 </head>
 

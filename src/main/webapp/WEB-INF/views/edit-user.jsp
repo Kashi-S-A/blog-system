@@ -10,7 +10,7 @@
 <title>Edit User</title>
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/css/style.css">
+	href="style.css">
 
 </head>
 

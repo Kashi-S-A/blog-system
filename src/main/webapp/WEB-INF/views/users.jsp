@@ -7,10 +7,10 @@
 
 <meta charset="UTF-8">
 
-<title>Admin Dashboard</title>
+<title>Manage Users</title>
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/css/style.css">
+	href="style.css">
 
 </head>
 
@@ -38,23 +38,23 @@
 
 	</div>
 
-	<!-- Main Content -->
+	<!-- Main -->
 
 	<div class="container">
 
-		<h2>Manage Blog Posts</h2>
+		<h2>Manage Users</h2>
 
 		<table>
 
 			<tr>
 
-				<th>Title</th>
+				<th>User ID</th>
 
-				<th>Author</th>
+				<th>Username</th>
 
-				<th>Date</th>
+				<th>Email</th>
 
-				<th>Status</th>
+				<th>Role</th>
 
 				<th>Actions</th>
 
@@ -62,16 +62,17 @@
 
 			<tr>
 
-				<td>Spring Boot Basics</td>
+				<td>1</td>
 
 				<td>Aman Shukla</td>
 
-				<td>29-06-2026</td>
+				<td>aman@gmail.com</td>
 
-				<td>Published</td>
+				<td>Admin</td>
 
 				<td class="action-column">
-
+					
+					<a href="edit-user" class="action-link">
 					<button class="btn blue">
 
 						Edit
@@ -81,12 +82,6 @@
 					<button class="btn red">
 
 						Delete
-
-					</button>
-
-					<button class="btn green">
-
-						Feature
 
 					</button>
 
@@ -96,33 +91,63 @@
 
 			<tr>
 
-				<td>Java Collection Framework</td>
+				<td>2</td>
 
 				<td>John Doe</td>
 
-				<td>28-06-2026</td>
+				<td>john@gmail.com</td>
 
-				<td>Published</td>
+				<td>User</td>
 
 				<td class="action-column">
 
-					<button class="btn blue">
+			        <a href="edit-user" class="action-link">
 
-						Edit
+					   <button class="btn blue">
 
-					</button>
+						  Edit
 
-					<button class="btn red">
+				</button>
 
-						Delete
+	        </a>
 
-					</button>
+					  <button class="btn red">
 
-					<button class="btn green">
+						   Delete
 
-						Feature
+			 </button>
 
-					</button>
+		   </td>
+
+			</tr>
+
+			<tr>
+
+				<td>3</td>
+
+				<td>Rahul Sharma</td>
+
+				<td>rahul@gmail.com</td>
+
+				<td>User</td>
+
+				<td class="action-column">
+
+				    <a href="edit-user" class="action-link">
+
+				        <button class="btn blue">
+
+				            Edit
+
+				        </button>
+
+				    </a>
+
+				    <button class="btn red">
+
+				        Delete
+
+				    </button>
 
 				</td>
 
