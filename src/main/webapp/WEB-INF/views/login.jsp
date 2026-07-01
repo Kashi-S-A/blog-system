@@ -19,8 +19,10 @@
 <div class="login-container">
 
 	<h2>Login Page</h2>
-
-	<form action="#" method="post">
+	<h3 style="color: green">${succ}</h3>
+	<h3 style="color: red">${err}</h3>
+	
+	<form action="/auth/login" method="post">
 
 		<label>Username</label>
 
@@ -52,7 +54,7 @@
 
 		New User?
 
-		<a href="register">
+		<a href="/auth/register">
 
 			Register Here
 

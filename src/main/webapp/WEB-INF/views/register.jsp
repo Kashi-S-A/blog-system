@@ -20,7 +20,7 @@
 
 		<h2>Registration</h2>
 
-		<form action="#" method="post">
+		<form action="/auth/register" method="post">
 
 			<label>Username</label>
 
@@ -50,7 +50,7 @@
 
 			<input
 				type="text"
-				name="fullname"
+				name="fullName"
 				class="input-box"
 				placeholder="Enter Full Name">
 
@@ -68,7 +68,7 @@
 
 			Already have an account?
 
-			<a href="login">
+			<a href="/auth/login">
 
 				Login Here
 

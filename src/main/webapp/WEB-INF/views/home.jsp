@@ -1,3 +1,6 @@
+<%@page import="java.util.List"%>
+<%@page import="com.blog.entity.Blog"%>
+<%@page import="org.springframework.data.domain.Page"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -6,7 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Blog Dashboard</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="/style.css">
 
 </head>
 
@@ -20,13 +23,13 @@
 
 	<div class="navbar">
 
-		<a href="home">Home</a>
+		<a href="#">Home</a>
 
-		<a href="post">Create New Post</a>
+		<a href="#">Create New Post</a>
 
-		<a href="profile">Profile</a>
+		<a href="#">Profile</a>
 
-		<a href="login">Logout</a>
+		<a href="/logout">Logout</a>
 
 	</div>
 
@@ -57,66 +60,63 @@
 
 	</form>
 
-	<!-- Dummy Post -->
+	<!-- Posts -->
+	<%
+		Page<Blog> pages =(Page<Blog>) request.getAttribute("blogs");
+		if(!pages.isEmpty())
+		{
+			List<Blog> blogs = pages.getContent();
+		for(Blog blog : blogs)
+		{
+	%>
 
 	<div class="post">
 
-		<h3>Introduction to Spring Boot</h3>
+		<h3><%=blog.getTitle()%></h3>
 
 		<p>
 
-			<b>Author :</b> Aman Shukla
+			<b>Author :</b> <%=blog.getUser().getUsername()%>
 
 			|
 
-			<b>Date :</b> 29-06-2026
+			<b>Date :</b> <%=blog.getCreatedDate()%>
 
 		</p>
 
 		<p>
 
-			Spring Boot is a powerful Java framework used for
-			building REST APIs and enterprise applications with
-			minimum configuration.
+			<%=blog.getContent()%>
 
 		</p>
-
-		<a href="#">Read More</a>
 
 	</div>
+	
+	<%}} %>
 
-	<div class="post">
-
-		<h3>Java Collection Framework</h3>
-
-		<p>
-
-			<b>Author :</b> John Doe
-
-			|
-
-			<b>Date :</b> 28-06-2026
-
-		</p>
-
-		<p>
-
-			Collection Framework provides List, Set, Queue and Map
-			interfaces for storing and manipulating data efficiently.
-
-		</p>
-
-		<a href="#">Read More</a>
-
-	</div>
-
-	<button class="button">
+	<%
+		if(pages.hasPrevious())
+		{
+	%>
+	<a href="/user/dashboard?pageno=<%= pages.getNumber()-1%>">
+	<button class="button" >
 		&laquo; Previous
 	</button>
-
-	<button class="button">
-		Next &raquo;
+	</a>
+	<%
+		}
+		if(pages.hasNext())
+		{
+	%>
+	<a href="/user/dashboard?pageno=<%= pages.getNumber()+1%>">
+	<button class="button" >
+		 Next &raquo;
 	</button>
+	</a>
+	<%
+		}
+	%>
+	
 
 </div>
 
