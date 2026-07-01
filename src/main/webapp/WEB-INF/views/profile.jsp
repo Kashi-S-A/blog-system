@@ -10,7 +10,7 @@
 <title>User Profile</title>
 
 <link rel="stylesheet"
-	href="style.css">
+	href="/style.css">
 
 </head>
 
@@ -24,13 +24,11 @@
 
 		<div class="navbar">
 
-			<a href="home">Home</a>
+			<a href="#">Home</a>
 
-			<a href="post">Create New Post</a>
+			<a href="#">Create New Post</a>
 
-			<a href="profile">Profile</a>
-
-			<a href="login">Logout</a>
+			<a href="#">Profile</a>
 
 		</div>
 
@@ -118,11 +116,11 @@
 
 		</table>
 
-		<button class="form-btn black">
-
-			Logout
-
-		</button>
+		<form action="/logout">
+		    <button type="submit" class="form-btn black">
+		        Logout
+		    </button>
+		</form>
 
 	</div>
 
