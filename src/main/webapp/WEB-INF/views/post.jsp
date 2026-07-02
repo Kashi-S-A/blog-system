@@ -8,7 +8,7 @@
 <title>Create New Post</title>
 
 <link rel="stylesheet"
-	href="style.css">
+	href="/style.css">
 
 </head>
 
@@ -22,13 +22,13 @@
 
 		<div class="navbar">
 
-			<a href="home">Home</a>
+			<a href="#">Home</a>
 
-			<a href="post">Create New Post</a>
+			<a href="#">Create New Post</a>
 
-			<a href="profile">Profile</a>
+			<a href="#">Profile</a>
 
-			<a href="login">Logout</a>
+			<a href="/logout">Logout</a>
 
 		</div>
 

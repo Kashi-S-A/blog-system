@@ -10,7 +10,7 @@
 <title>Manage Posts</title>
 
 <link rel="stylesheet"
-	href="style.css">
+	href="/style.css">
 
 </head>
 
@@ -22,17 +22,15 @@
 
 		<div class="navbar">
 
-			<!--<a href="admin-dashboard">Dashboard</a>-->
+			<a href="#">Manage Posts</a>
+			
+			<a href="#">Manage Users</a>
 
-			<a href="users">Manage Users</a>
+			<a href="#">Post Moderation</a>
 
-			<a href="posts">Manage Posts</a>
+			<a href="#">Reports</a>
 
-			<a href="post-moderation">Post Moderation</a>
-
-			<a href="report">Reports</a>
-
-			<a href="login">Logout</a>
+			<a href="/logout">Logout</a>
 
 		</div>
 
@@ -139,7 +137,6 @@
 						<button type="button" class="btn blue">
 							Edit
 						</button>
-
 					</a>
 
 					<button type="button" class="btn red">
@@ -149,9 +146,7 @@
 					<button type="button" class="btn green">
 						Feature
 					</button>
-
 				</td>
-
 			</tr>
 
 		</table>
