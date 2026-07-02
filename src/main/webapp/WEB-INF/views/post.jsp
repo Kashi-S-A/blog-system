@@ -26,7 +26,7 @@
 
 			<a href="/user/post">Create New Post</a>
 
-			<a href="#">Profile</a>
+			<a href="/user/profile">Profile</a>
 
 			<a href="/logout">Logout</a>
 

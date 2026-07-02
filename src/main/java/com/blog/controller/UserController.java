@@ -1,13 +1,14 @@
 package com.blog.controller;
 
 import java.security.Principal;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -64,4 +65,41 @@ public class UserController {
 		return AppUiPages.POST;
 	}
 
+	@GetMapping("/profile")
+	public String profilePage(Principal principal, Model model,@RequestParam(required = false,defaultValue = "0") Integer id) {
+
+		String authenticatedUserEmail = principal.getName();
+
+		User user = userRepo.findByEmail(authenticatedUserEmail).get();
+		
+		if (id != 0) {
+			
+			Optional<Blog> optBlog = blogRepo.findById(id);
+			
+			if (optBlog.isPresent()) {
+
+				Blog blog = optBlog.get();
+
+				if (blog.getUser().getEmail().equals(authenticatedUserEmail)) {
+					blogRepo.delete(blog);
+					model.addAttribute("delete_msg", "Successfully Deleted");
+				}
+			}
+		}
+
+		List<Blog> blogs = blogRepo.findByUser(user);
+
+		model.addAttribute("user", user);
+		model.addAttribute("blogs", blogs);
+
+		return AppUiPages.PROFILE;
+	}
+	
+	@GetMapping("/edit-blog")
+	public String editBlog(@RequestParam Integer id) {
+		System.out.println(id);
+		return AppUiPages.EDIT_USER;
+	}
+
+	
 }
