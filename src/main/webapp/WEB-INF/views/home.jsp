@@ -41,7 +41,7 @@
 
 	<h2>Blog Posts</h2>
 
-	<form action="/user/dashboard" method="get">
+	<form action="/user/dashboard" method="get" class="home-search-form">
 
 		<input
 			type="text"
@@ -49,10 +49,13 @@
 			class="search-box"
 			placeholder="Search posts...">
 
-		<input type="submit" value="Submit">
+			<button type="submit" class="home-action-btn">
+			    Search
+			</button>
+
 	</form>
 	
-	<form action="/user/dashboard" method="get">
+	<form action="/user/dashboard" method="get" class="home-sort-form">
 		<select class="sort-box" name="sort">
 
 			<option value="createdDate">Sort by Date</option>
@@ -61,7 +64,9 @@
 
 		</select>
 		
-		<input type="submit" value="Submit">
+		<button type="submit" class="home-action-btn">
+		        Sort
+		</button>
 	</form>
 
 	<!-- Posts -->
