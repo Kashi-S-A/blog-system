@@ -68,31 +68,7 @@ public class UserController {
 	@GetMapping("/profile")
 	public String profilePage(Principal principal, Model model,@RequestParam(required = false,defaultValue = "0") Integer id) {
 
-		String authenticatedUserEmail = principal.getName();
-
-		User user = userRepo.findByEmail(authenticatedUserEmail).get();
-		
-		if (id != 0) {
-			
-			Optional<Blog> optBlog = blogRepo.findById(id);
-			
-			if (optBlog.isPresent()) {
-
-				Blog blog = optBlog.get();
-
-				if (blog.getUser().getEmail().equals(authenticatedUserEmail)) {
-					blogRepo.delete(blog);
-					model.addAttribute("delete_msg", "Successfully Deleted");
-				}
-			}
-		}
-
-		List<Blog> blogs = blogRepo.findByUser(user);
-
-		model.addAttribute("user", user);
-		model.addAttribute("blogs", blogs);
-
-		return AppUiPages.PROFILE;
+		return blogService.profile(principal, model, id);
 	}
 	
 	@GetMapping("/edit-blog")
