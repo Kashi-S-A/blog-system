@@ -17,7 +17,9 @@
 <body>
 
 	<!-- Header -->
-	
+	<%
+	if("${role}".equals("ADMIN")){
+	%>
 
 	<div class="header">
 
@@ -38,48 +40,76 @@
 		</div>
 
 	</div>
+	
+	<% } else { %>
+	
+	<div class="header">
+
+		<h2>Blog Dashboard</h2>
+
+		<div class="navbar">
+
+			<a href="/user/dashboard">Home</a>
+
+			<a href="/user/post">Create New Post</a>
+
+			<a href="/user/profile">Profile</a>
+
+			<a href="/logout">Logout</a>
+
+		</div>
+
+	</div>
+	
+	<% } %>
 
 	<!-- Main -->
 
 	<div class="container">
+	
+	<h4 style = "color: green">${update}</h4>
 
 		<h2>Edit Post</h2>
 
-		<form action="#" method="post">
+		<form action="/user/edit" method="post">
 
 			<label>Post ID</label>
 
 			<input
 				type="text"
+				name = "id"
 				class="input-box"
-				value="101"
+				value="${blog.id}"
 				readonly>
 
 			<label>Title</label>
 
 			<input
 				type="text"
+				name="title"
 				class="input-box"
-				value="Spring Boot Basics">
+				value="${blog.title}">
 
 			<label>Author</label>
 
 			<input
 				type="text"
+				name="fullName"
 				class="input-box"
-				value="Aman Shukla">
+				readonly
+				value="${blog.user.fullName}">
 
 			<label>Content</label>
 
-			<textarea class="input-box">
-
-Spring Boot is a Java framework used to build enterprise applications.
-
-			</textarea>
+			<textarea name="content" class="input-box"> ${blog.content}
+                 </textarea>
 
 			<label>Status</label>
 
-			<select class="input-box">
+<%
+	if("${role}".equals("ADMIN")){
+	%>
+			<select class="input-box" >
 
 				<option>Published</option>
 
@@ -88,7 +118,13 @@ Spring Boot is a Java framework used to build enterprise applications.
 				<option>Rejected</option>
 
 			</select>
-
+		<% } else { %>	
+			<input
+				type="text"
+				name = "status"
+				class="input-box"
+				value="${status}" readonly>
+ 		<% } %>
 			<button
 				type="submit"
 				class="form-btn blue">

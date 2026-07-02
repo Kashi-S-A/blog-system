@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.blog.constant.AppUiPages;
 import com.blog.dto.BlogDTO;
+import com.blog.dto.BlogUpdateDTO;
 import com.blog.entity.Blog;
+import com.blog.entity.Role;
 import com.blog.entity.Status;
 import com.blog.entity.User;
 import com.blog.repo.BlogRepo;
@@ -66,16 +68,57 @@ public class UserController {
 	}
 
 	@GetMapping("/profile")
-	public String profilePage(Principal principal, Model model,@RequestParam(required = false,defaultValue = "0") Integer id) {
+	public String profilePage(Principal principal, Model model,
+			@RequestParam(required = false, defaultValue = "0") Integer id) {
 
 		return blogService.profile(principal, model, id);
 	}
-	
+
 	@GetMapping("/edit-blog")
-	public String editBlog(@RequestParam Integer id) {
-		System.out.println(id);
-		return AppUiPages.EDIT_USER;
+	public String editBlog(Principal principal,Model model,@RequestParam Integer id,@RequestParam(required = false,defaultValue = "no") String update) {
+
+		if (!update.equals("no")) {
+			model.addAttribute("update", update);
+		}
+		String authenticatedUserEmail = principal.getName();
+		Optional<Blog> optBlog =blogRepo.findById(id);
+		
+		Blog blog = null; 
+		
+		if(optBlog.isPresent()) {
+			blog = optBlog.get();
+			
+			if (!blog.getUser().getEmail().equals(authenticatedUserEmail)) {
+				return "redirect:/user/profile";
+			}
+		}
+		
+		blog = optBlog.get();
+		
+		String status = blog.getStatus().name();
+		String role = blog
+				.getUser()
+				.getRole()
+				.name();
+		
+		model.addAttribute("status",status);
+		model.addAttribute("role",role);
+		model.addAttribute("blog", blog);
+
+		return AppUiPages.EDIT_POST;
+	}
+	
+	@PostMapping("/edit")
+	public String updateBlog(Model model,BlogUpdateDTO blogUpdateDTO) {
+		
+		Blog blog = blogRepo.findById(blogUpdateDTO.getId()).get();
+		
+		blog.setTitle(blogUpdateDTO.getTitle());
+		blog.setContent(blogUpdateDTO.getContent());
+		
+		blogRepo.save(blog);
+		
+		return "redirect:/user/edit-blog?id=" + blog.getId() +"&update=Succesfully Update";
 	}
 
-	
 }
