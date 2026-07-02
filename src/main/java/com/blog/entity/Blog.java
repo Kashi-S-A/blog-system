@@ -33,9 +33,9 @@ public class Blog {
 	private String content;
 
 	private String tags;
-	
+
 	@Enumerated(EnumType.STRING)
-	private Status status ;
+	private Status status = Status.PENDING;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
@@ -47,4 +47,5 @@ public class Blog {
 
 	@UpdateTimestamp
 	private LocalDateTime updatedDate;
+
 }

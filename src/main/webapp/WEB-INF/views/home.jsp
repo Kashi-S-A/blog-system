@@ -23,9 +23,9 @@
 
 	<div class="navbar">
 
-		<a href="#">Home</a>
+		<a href="/user/dashboard">Home</a>
 
-		<a href="#">Create New Post</a>
+		<a href="/user/post">Create New Post</a>
 
 		<a href="#">Profile</a>
 
@@ -41,23 +41,27 @@
 
 	<h2>Blog Posts</h2>
 
-	<form>
+	<form action="/user/dashboard" method="get">
 
 		<input
 			type="text"
+			name="search"
 			class="search-box"
 			placeholder="Search posts...">
 
-		<select class="sort-box">
+		<input type="submit" value="Submit">
+	</form>
+	
+	<form action="/user/dashboard" method="get">
+		<select class="sort-box" name="sort">
 
-			<option>Sort by Date</option>
+			<option value="createdDate">Sort by Date</option>
 
-			<option>Sort by Author</option>
-
-			<option>Sort by Popularity</option>
+			<option value="title">Sort by Title</option>
 
 		</select>
-
+		
+		<input type="submit" value="Submit">
 	</form>
 
 	<!-- Posts -->

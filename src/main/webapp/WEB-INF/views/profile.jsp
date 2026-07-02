@@ -24,9 +24,9 @@
 
 		<div class="navbar">
 
-			<a href="#">Home</a>
+			<a href="/user/dashboard">Home</a>
 
-			<a href="#">Create New Post</a>
+			<a href="/user/post">Create New Post</a>
 
 			<a href="#">Profile</a>
 

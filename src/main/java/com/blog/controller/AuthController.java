@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.blog.constant.AppUiPages;
 import com.blog.dto.RegisterDTO;
 import com.blog.entity.User;
 import com.blog.repo.UserRepo;
@@ -28,13 +29,13 @@ public class AuthController {
 
 	@GetMapping("/register")
 	public String registerPage() {
-		return "register.jsp";
+		return AppUiPages.REGISTER;
 	}
 
 	@GetMapping("/login")
 	public String loginPage(@RequestParam(required = false) String msg, Model model) {
 		model.addAttribute("err", msg);
-		return "login.jsp";
+		return AppUiPages.LOGIN;
 	}
 
 	@PostMapping("/register")
@@ -44,7 +45,7 @@ public class AuthController {
 
 		if (opt.isPresent()) {
 			model.addAttribute("err", "Already Register");
-			return "login.jsp";
+			return AppUiPages.LOGIN;
 		}
 
 		User user = new User();
@@ -53,7 +54,7 @@ public class AuthController {
 
 		userRepo.save(user);
 		model.addAttribute("succ", "Registered Successfully");
-		return "login.jsp";
+		return AppUiPages.LOGIN;
 	}
 
 }

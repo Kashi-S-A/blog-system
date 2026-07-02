@@ -22,9 +22,9 @@
 
 		<div class="navbar">
 
-			<a href="#">Home</a>
+			<a href="/user/dashboard">Home</a>
 
-			<a href="#">Create New Post</a>
+			<a href="/user/post">Create New Post</a>
 
 			<a href="#">Profile</a>
 
@@ -37,15 +37,16 @@
 	<!-- Main -->
 
 	<div class="container">
-
+	<h4 style="color: green">${msg}</h4>
 		<h2>Create New Post</h2>
 
-		<form action="#" method="post">
+		<form action="/user/post" method="post">
 
 			<label>Title</label>
 
 			<input
 				type="text"
+				name="title"
 				class="input-box"
 				placeholder="Enter Blog Title">
 
@@ -53,12 +54,14 @@
 
 			<textarea
 				class="input-box"
+				name="content"
 				placeholder="Write your blog here..."></textarea>
 
 			<label>Tags</label>
 
 			<input
 				type="text"
+				name="tags"
 				class="input-box"
 				placeholder="Java, Spring Boot, JSP">
 
