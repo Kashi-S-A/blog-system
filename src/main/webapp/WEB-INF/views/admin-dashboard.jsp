@@ -1,3 +1,6 @@
+<%@page import="java.util.List"%>
+<%@page import="com.blog.entity.Blog"%>
+<%@page import="org.springframework.data.domain.Page"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -24,20 +27,20 @@
 
 		<div class="navbar">
 
-			<a href="#">Manage Posts</a>
+			<a href="/admin/dashboard">Manage Posts</a>
 
-			<a href="#">Manage Users</a>
+			<a href="/admin/users">Manage Users</a>
 
-			<a href="#">Post Moderation</a>
+			<a href="/admin/post-mod">Post Moderation</a>
 
-			<a href="#">Reports</a>
+			<a href="/admin/reports">Reports</a>
 
 			<a href="/logout">Logout</a>
 
 		</div>
 
 	</div>
-
+	
 	<!-- Main Content -->
 
 	<div class="container">
@@ -56,79 +59,54 @@
 
 				<th>Status</th>
 
-				<th>Actions</th>
-
 			</tr>
+	<%
+		Page<Blog> pages =(Page<Blog>) request.getAttribute("blogs");
+		if(!pages.isEmpty())
+		{
+			List<Blog> blogs = pages.getContent();
+		for(Blog blog : blogs)
+		{
+	%>
 
 			<tr>
 
-				<td>Spring Boot Basics</td>
+				<td><%=blog.getTitle() %></td>
 
-				<td>Aman Shukla</td>
+				<td><%=blog.getUser().getFullName()%></td>
 
-				<td>29-06-2026</td>
+				<td><%=blog.getCreatedDate() %></td>
 
-				<td>Published</td>
-
-				<td class="action-column">
-
-					<button class="btn blue">
-
-						Edit
-
-					</button>
-
-					<button class="btn red">
-
-						Delete
-
-					</button>
-
-					<button class="btn green">
-
-						Feature
-
-					</button>
-
-				</td>
+				<td><%=blog.getStatus() %></td>
 
 			</tr>
 
-			<tr>
-
-				<td>Java Collection Framework</td>
-
-				<td>John Doe</td>
-
-				<td>28-06-2026</td>
-
-				<td>Published</td>
-
-				<td class="action-column">
-
-					<button class="btn blue">
-
-						Edit
-
-					</button>
-
-					<button class="btn red">
-
-						Delete
-
-					</button>
-
-					<button class="btn green">
-
-						Feature
-
-					</button>
-
-				</td>
-
-			</tr>
-
+	<%}} %>
 		</table>
+
+		
+	<%
+		if(pages.hasPrevious())
+		{
+	%>
+	<a href="/admin/dashboard?pageno=<%= pages.getNumber()-1%>">
+	<button class="button" >
+		&laquo; Previous
+	</button>
+	</a>
+	<%
+		}
+		if(pages.hasNext())
+		{
+	%>
+	<a href="/admin/dashboard?pageno=<%= pages.getNumber()+1%>">
+	<button class="button" >
+		 Next &raquo;
+	</button>
+	</a>
+	<%
+		}
+	%>
 
 	</div>
 

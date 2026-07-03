@@ -9,7 +9,5 @@ public class BlogUpdateDTO {
 	
 	private Integer id;
 	private String title;
-	private String fullName;
 	private String content;
-	private String status;
 }

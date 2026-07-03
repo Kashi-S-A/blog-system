@@ -24,13 +24,13 @@
 
 		<div class="navbar">
 
-			<a href="#">Manage Posts</a>
-			
-			<a href="#">Manage Users</a>
+			<a href="/admin/dashboard">Manage Posts</a>
 
-			<a href="#">Post Moderation</a>
+			<a href="/admin/users">Manage Users</a>
 
-			<a href="#">Reports</a>
+			<a href="/admin/post-mod">Post Moderation</a>
+
+			<a href="/admin/reports">Reports</a>
 
 			<a href="/logout">Logout</a>
 
@@ -53,10 +53,6 @@
 			<select class="input-box">
 
 				<option>Most Active Users</option>
-
-				<option>Most Popular Posts</option>
-
-				<option>Posts by Category</option>
 
 				<option>Pending Posts</option>
 

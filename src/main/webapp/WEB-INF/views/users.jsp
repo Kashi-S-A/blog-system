@@ -1,3 +1,5 @@
+<%@page import="com.blog.entity.User"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -24,13 +26,13 @@
 
 		<div class="navbar">
 
-			<a href="#">Manage Posts</a>
+			<a href="/admin/dashboard">Manage Posts</a>
 
-			<a href="#">Manage Users</a>
+			<a href="/admin/users">Manage Users</a>
 
-			<a href="#">Post Moderation</a>
+			<a href="/admin/post-mod">Post Moderation</a>
 
-			<a href="#">Reports</a>
+			<a href="/admin/reports">Reports</a>
 
 			<a href="/logout">Logout</a>
 
@@ -39,9 +41,13 @@
 	</div>
 
 	<!-- Main -->
+	
+	<%
+		List<User> users = (List<User>) request.getAttribute("users");
+	%>
 
 	<div class="container">
-
+	<h4 style="color: green">${msg}</h4>
 		<h2>Manage Users</h2>
 
 		<table>
@@ -60,99 +66,47 @@
 
 			</tr>
 
+			<%
+				if(!users.isEmpty())
+				{ 
+					for(User user : users)
+					{
+			%>
 			<tr>
 
-				<td>1</td>
+				<td><%=user.getId() %></td>
 
-				<td>Aman Shukla</td>
+				<td><%=user.getFullName() %></td>
 
-				<td>aman@gmail.com</td>
+				<td><%=user.getEmail() %></td>
 
-				<td>Admin</td>
+				<td><%=user.getRole()%></td>
 
 				<td class="action-column">
 					
-					<a href="edit-user" class="action-link">
+					<a href="edit-user?uid=<%= user.getId()%>" class="action-link">
 					<button class="btn blue">
 
 						Edit
 
 					</button>
-
+					</a>
+					
+					<a href="/admin/delete?uid=<%= user.getId()%>">
 					<button class="btn red">
 
 						Delete
 
 					</button>
-
+					</a>
+					
 				</td>
 
 			</tr>
-
-			<tr>
-
-				<td>2</td>
-
-				<td>John Doe</td>
-
-				<td>john@gmail.com</td>
-
-				<td>User</td>
-
-				<td class="action-column">
-
-			        <a href="edit-user" class="action-link">
-
-					   <button class="btn blue">
-
-						  Edit
-
-				</button>
-
-	        </a>
-
-					  <button class="btn red">
-
-						   Delete
-
-			 </button>
-
-		   </td>
-
-			</tr>
-
-			<tr>
-
-				<td>3</td>
-
-				<td>Rahul Sharma</td>
-
-				<td>rahul@gmail.com</td>
-
-				<td>User</td>
-
-				<td class="action-column">
-
-				    <a href="edit-user" class="action-link">
-
-				        <button class="btn blue">
-
-				            Edit
-
-				        </button>
-
-				    </a>
-
-				    <button class="btn red">
-
-				        Delete
-
-				    </button>
-
-				</td>
-
-			</tr>
-
+			<%		}
+			
+				}
+			%>
 		</table>
 
 	</div>

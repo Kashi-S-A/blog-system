@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -40,7 +41,7 @@ public class User {
 
 	private String fullName;
 
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user",cascade = CascadeType.REMOVE)
 	private List<Blog> blogs;
 
 	@CreationTimestamp
