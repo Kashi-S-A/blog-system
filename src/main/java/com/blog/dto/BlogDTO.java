@@ -12,4 +12,6 @@ public class BlogDTO {
 	private String content;
 
 	private String tags;
+
+	
 }

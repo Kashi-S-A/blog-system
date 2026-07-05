@@ -1,4 +1,4 @@
-INSERT INTO blog (content, created_date, status, tags, title, updated_date, user_id)
+	INSERT INTO blog (content, created_date, status, tags, title, updated_date, user_id)
 VALUES (
     'Artificial Intelligence is transforming industries by automating repetitive tasks and improving decision-making.',
     '2026-07-01 09:15:00',
@@ -191,7 +191,7 @@ VALUES (
     '2026-06-14 15:35:00',
     'APPROVED',
     'Agile,Scrum,Software Development',
-    'Why Agile Development Works',
+    'Why Agile Development Works',																																																																																			
     '2026-06-14 16:05:00',
     5
 );

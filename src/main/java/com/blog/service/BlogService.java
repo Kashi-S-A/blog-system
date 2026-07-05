@@ -144,4 +144,44 @@ public class BlogService {
 
 		return "redirect:/user/edit-blog?id=" + blog.getId() + "&update=Succesfully Update";
 	}
+	
+	//
+	public void approveBlog(Integer id) {
+
+	    Optional<Blog> optionalBlog = blogRepo.findById(id);
+
+	    if (optionalBlog.isPresent()) {
+
+	        Blog blog = optionalBlog.get();
+
+	        blog.setStatus(Status.APPROVED);
+
+	        blogRepo.save(blog);
+	    }
+	}
+	
+	
+	public void rejectBlog(Integer id) {
+
+	    Optional<Blog> optionalBlog = blogRepo.findById(id);
+
+	    if (optionalBlog.isPresent()) {
+
+	        Blog blog = optionalBlog.get();
+
+	        blog.setStatus(Status.REJECTED);
+
+	        blogRepo.save(blog);
+	    }
+	}
+	
+	public void removeBlog(Integer id) {
+
+	    Optional<Blog> optionalBlog = blogRepo.findById(id);
+
+	    if (optionalBlog.isPresent()) {
+
+	        blogRepo.delete(optionalBlog.get());
+	    }
+	}
 }

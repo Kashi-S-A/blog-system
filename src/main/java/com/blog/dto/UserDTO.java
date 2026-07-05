@@ -2,6 +2,7 @@ package com.blog.dto;
 
 import com.blog.entity.Role;
 
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,4 +14,5 @@ public class UserDTO {
 	private String username;
 	private String email;
 	private Role role;
+	
 }
