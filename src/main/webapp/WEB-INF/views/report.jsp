@@ -44,17 +44,15 @@
 
 		<h2>Reports</h2>
 
-		<h2>Reports</h2>
-
-		<form action="#" method="post">
+		<form action="/admin/reports/pdf" method="get">
 
 			<label>Select Report</label>
 
-			<select class="input-box">
+			<select name="type">
 
-				<option>Most Active Users</option>
+				<option value="activeUsers">Most Active Users</option>
 
-				<option>Pending Posts</option>
+				<option value="pendingPosts">Pending Posts</option>
 
 			</select>
 

@@ -19,4 +19,5 @@ public interface BlogRepo extends JpaRepository<Blog, Integer> {
 			Status approved);
 	
 	List<Blog> findByUser(User user);
+	List<Blog> findByStatus(Status status);
 }
