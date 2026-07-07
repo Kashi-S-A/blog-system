@@ -1,6 +1,8 @@
 package com.blog.controller;
 
+import java.io.IOException;
 import java.util.List;
+
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -21,8 +23,11 @@ import com.blog.entity.Status;
 import com.blog.entity.User;
 import com.blog.repo.BlogRepo;
 import com.blog.repo.UserRepo;
+import com.blog.util.PdfGenerator;
+import com.itextpdf.text.DocumentException;
 import com.blog.service.BlogService;
 
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -112,6 +117,54 @@ public class AdminController {
 		return AppUiPages.REPORT;
 	}
 	
+	@GetMapping("/reports/pdf")
+	public void generateReport(
+	        @RequestParam("type") String type,
+	        HttpServletResponse response) throws DocumentException, IOException {
+
+	    //System.out.println("Selected Report : " + type);
+		
+		if (type.equals("activeUsers")) {
+		
+		List<User> users = userRepo.findByRole(Role.USER);
+
+		users.sort((u1, u2) ->
+		    Integer.compare(
+		        u2.getBlogs().size(),
+		        u1.getBlogs().size()
+		    )
+		);
+		
+		PdfGenerator.generateActiveUsersPdf(response,users);
+		}
+		
+		else if (type.equals("pendingPosts")) {
+
+	        List<Blog> blogs = blogRepo.findByStatus(Status.PENDING);
+
+	        PdfGenerator.generatePendingPostsPdf(response, blogs);
+
+	    }
+		
+		
+		
+		
+
+//		for(User user : users){
+//
+//		    System.out.println(
+//		        user.getUsername()
+//		        + " -> "
+//		        + user.getBlogs().size()
+//		    );
+//
+//		 }
+
+		}
+
+	}
+	
+
 	
 	
 	@GetMapping("/approve")
