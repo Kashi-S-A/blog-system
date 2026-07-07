@@ -38,7 +38,7 @@ public class AdminController {
 	private final BlogRepo blogRepo;
 
 	private final UserRepo userRepo;
-	
+
 	private final BlogService blogservice;
 
 	@GetMapping("/dashboard")
@@ -99,96 +99,71 @@ public class AdminController {
 
 		return "redirect:/admin/users?msg=Cannot deleted user";
 	}
-	
+
 	@GetMapping("/post-mod")
-	public String postMod(Model model,@RequestParam(required = false,defaultValue = "0")Integer pageno) {
-		
+	public String postMod(Model model, @RequestParam(required = false, defaultValue = "0") Integer pageno) {
+
 		Pageable pageable = PageRequest.of(pageno, 5);
-		
+
 		Page<Blog> blogs = blogRepo.findByStatus(pageable, Status.PENDING);
-		
+
 		model.addAttribute("blogs", blogs);
-		
+
 		return AppUiPages.POST_MODERATION;
 	}
-	
+
 	@GetMapping("/reports")
 	public String reportsPage() {
 		return AppUiPages.REPORT;
 	}
-	
+
 	@GetMapping("/reports/pdf")
-	public void generateReport(
-	        @RequestParam("type") String type,
-	        HttpServletResponse response) throws DocumentException, IOException {
+	public void generateReport(@RequestParam("type") String type, HttpServletResponse response)
+			throws DocumentException, IOException {
 
-	    //System.out.println("Selected Report : " + type);
-		
+		// System.out.println("Selected Report : " + type);
+
 		if (type.equals("activeUsers")) {
-		
-		List<User> users = userRepo.findByRole(Role.USER);
 
-		users.sort((u1, u2) ->
-		    Integer.compare(
-		        u2.getBlogs().size(),
-		        u1.getBlogs().size()
-		    )
-		);
-		
-		PdfGenerator.generateActiveUsersPdf(response,users);
+			List<User> users = userRepo.findByRole(Role.USER);
+
+			users.sort((u1, u2) -> Integer.compare(u2.getBlogs().size(), u1.getBlogs().size()));
+
+			PdfGenerator.generateActiveUsersPdf(response, users);
 		}
-		
+
 		else if (type.equals("pendingPosts")) {
 
-	        List<Blog> blogs = blogRepo.findByStatus(Status.PENDING);
+			List<Blog> blogs = blogRepo.findByStatus(Status.PENDING);
 
-	        PdfGenerator.generatePendingPostsPdf(response, blogs);
-
-	    }
-		
-		
-		
-		
-
-//		for(User user : users){
-//
-//		    System.out.println(
-//		        user.getUsername()
-//		        + " -> "
-//		        + user.getBlogs().size()
-//		    );
-//
-//		 }
+			PdfGenerator.generatePendingPostsPdf(response, blogs);
 
 		}
 
 	}
-	
 
-	
-	
 	@GetMapping("/approve")
 	public String approveBlog(@RequestParam Integer id) {
 
-	    blogservice.approveBlog(id);
+		blogservice.approveBlog(id);
 
-	    return "redirect:/admin/post-mod";
+		return "redirect:/admin/post-mod";
 	}
-	
+
 	@GetMapping("/reject")
 	public String rejectBlog(@RequestParam Integer id) {
 
-	    blogservice.rejectBlog(id);
+		blogservice.rejectBlog(id);
 
-	    return "redirect:/admin/post-mod";
+		return "redirect:/admin/post-mod";
 	}
-	
+
 	@GetMapping("/delete-blog")
 	public String deleteBlog(@RequestParam Integer id) {
 
-	    blogservice.removeBlog(id);
+		blogservice.removeBlog(id);
 
-	    return "redirect:/admin/post-mod";
+		return "redirect:/admin/post-mod";
 	}
 
 }
