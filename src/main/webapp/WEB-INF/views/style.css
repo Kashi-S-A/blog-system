@@ -130,6 +130,10 @@ textarea{
 
 /* ================= BUTTONS ================= */
 
+.action-column a {
+    text-decoration: none;
+}
+
 .form-btn{
 
     width:100%;

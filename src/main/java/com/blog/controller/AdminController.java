@@ -25,6 +25,7 @@ import com.blog.repo.BlogRepo;
 import com.blog.repo.UserRepo;
 import com.blog.util.PdfGenerator;
 import com.itextpdf.text.DocumentException;
+import com.blog.service.BlogService;
 
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -37,6 +38,8 @@ public class AdminController {
 	private final BlogRepo blogRepo;
 
 	private final UserRepo userRepo;
+	
+	private final BlogService blogservice;
 
 	@GetMapping("/dashboard")
 	public String dashBoardPage(Model model, @RequestParam(required = false, defaultValue = "0") Integer pageno) {
@@ -162,3 +165,30 @@ public class AdminController {
 	}
 	
 
+	
+	
+	@GetMapping("/approve")
+	public String approveBlog(@RequestParam Integer id) {
+
+	    blogservice.approveBlog(id);
+
+	    return "redirect:/admin/post-mod";
+	}
+	
+	@GetMapping("/reject")
+	public String rejectBlog(@RequestParam Integer id) {
+
+	    blogservice.rejectBlog(id);
+
+	    return "redirect:/admin/post-mod";
+	}
+	
+	@GetMapping("/delete-blog")
+	public String deleteBlog(@RequestParam Integer id) {
+
+	    blogservice.removeBlog(id);
+
+	    return "redirect:/admin/post-mod";
+	}
+
+}

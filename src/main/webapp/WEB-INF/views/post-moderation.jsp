@@ -81,17 +81,22 @@
 
 				<td class="action-column">
 
-					<button type="button" class="btn green">
-						Approve
-					</button>
+					<a href="/admin/approve?id=<%=blog.getId()%>">
+					    <button type="button" class="btn green">
+					        Approve
+					    </button>
+					</a>
 
-					<button type="button" class="btn blue">
-						Reject
-					</button>
-
-					<button type="button" class="btn red">
-						Remove
-					</button>
+					<a href="/admin/reject?id=<%=blog.getId()%>">
+					    <button type="button" class="btn blue">
+					        Reject
+					    </button>
+					</a>
+					<a href="/admin/delete-blog?id=<%=blog.getId()%>">
+					    <button type="button" class="btn red">
+					        Remove
+					    </button>
+					</a>
 
 				</td>
 			</tr>
